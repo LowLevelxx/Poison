@@ -87,6 +87,8 @@ namespace Poison
             Loader.AddComponent<CustomBoardManager>();
             Loader.AddComponent<UI>();
             Loader.AddComponent<Hud>();
+            Loader.AddComponent<Poison.Classes.Menu.Console>();
+            Loader.AddComponent<Poison.Classes.Menu.ServerData>();
             UnityEngine.Object.DontDestroyOnLoad(Loader);
             coroutineManager.StartCoroutine(PatchIntegrityLoop());
         }
