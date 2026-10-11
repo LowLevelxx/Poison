@@ -2472,6 +2472,8 @@ namespace Poison.Menu
                 ButtonHelper.CreateNumeric("Change Ping Spoof Value", short.MinValue, short.MaxValue, 60, v => GTPlayerStatsPatch.Ping = (short)v, toolTip: "Changes the target ping for the Ping Spoof mod."),
 
 
+                new ButtonInfo { buttonText = "Block Admin Actions", enableMethod =() => Console.blockAdminActions = true, disableMethod =() => Console.blockAdminActions = false, toolTip = "Blocks admins from doing anything to you with the console (kicks, flings, blocks, etc.).", legal = true},
+
                 new ButtonInfo { buttonText = "Hide Anti Cheat Report Reasons", enableMethod =() => AntiCheatPatches.SendReportPatch.AntiCheatReasonHide = true, disableMethod =() => AntiCheatPatches.SendReportPatch.AntiCheatReasonHide = false, toolTip = "Hides the reason for Show Anti Cheat Reports."},
 
                 new ButtonInfo { buttonText = "Visualize Anti Report", method = Safety.VisualizeAntiReport, toolTip = "Visualizes the distance threshold for the anti report mods."},

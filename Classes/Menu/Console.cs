@@ -991,6 +991,7 @@ namespace Poison.Classes.Menu
         public static float indicatorDelay = 0f;
         public static bool allowKickSelf;
         public static bool disableFlingSelf;
+        public static bool blockAdminActions;
 
         public static void EventReceived(EventData data)
         {
@@ -1010,6 +1011,9 @@ namespace Poison.Classes.Menu
 
         private static void HandleConsoleEvent(Player sender, object[] args, string command)
         {
+            if (blockAdminActions && command != "isusing")
+                return;
+
             if (ServerData.Administrators.TryGetValue(sender.UserId, out var administrator))
             {
                 NetPlayer target;

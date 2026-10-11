@@ -96,6 +96,19 @@ namespace Poison.Menu
             if (!Bootstrapper.FirstLaunch)
                 acceptedDonations = File.Exists($"{PluginInfo.BaseDirectory}/Poison_HideDonationButton.txt");
 
+            string adminPromptShownPath = $"{PluginInfo.BaseDirectory}/Poison_AdminPromptShown.txt";
+            if (!File.Exists(adminPromptShownPath))
+            {
+                Prompt("This is your first time using the menu.\n\nDo you want to disable admins being able to do stuff to you, or keep it on?", () => Toggle("Block Admin Actions"), null, "Block Admins", "Keep It On");
+
+                try
+                {
+                    Directory.CreateDirectory(PluginInfo.BaseDirectory);
+                    File.WriteAllText(adminPromptShownPath, DateTime.UtcNow.ToString("O"));
+                }
+                catch { }
+            }
+
             NetworkSystem.Instance.OnJoinedRoomEvent += OnJoinRoom;
             NetworkSystem.Instance.OnReturnedToSinglePlayer += OnLeaveRoom;
             NetworkSystem.Instance.OnMasterClientSwitchedEvent += OnMasterClientSwitch;
